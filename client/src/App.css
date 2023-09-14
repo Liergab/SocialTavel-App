@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@100;300;400;500&family=Rubik:wght@400;500;700&display=swap');
+html,
+body,
+#root,
+.app{
+  height: 100%;
+  width: 100%;
+  font-family: "Rubik", sans-serif;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+@media screen and (max-width: 720px) {
+  .app{
+    padding-left: 0.1rem;
+    padding-right: 0.1rem;
+  }
+  }
