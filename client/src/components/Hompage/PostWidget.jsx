@@ -8,11 +8,11 @@ import {
     Avatar
   } from "@material-tailwind/react";
   import Tokyo from '../../assets/images/Tokyo.jpg'
-  import cvprofile from '../../assets/images/cvprofile.jpg'
-    import  Toggle  from "../../hooks/Toggle";
+  import  Toggle  from "../../hooks/Toggle";
+  import { GetUser } from "../../hooks/Api";
 
 const PostWidget = () => {
-  
+  const {data} = GetUser()
 
   const [state, toggle] = Toggle()
   return (
@@ -25,9 +25,9 @@ const PostWidget = () => {
                     variant="circular"
                     alt="tania andrew"
                     className="cursor-pointer p-0.5"
-                    src={cvprofile}/>
+                    src={`http://localhost:5001/image/${data?.name}`}/>
                     <div className="flex items-center: gap-40">
-                    <span className="text-sm font-semibold">Bryan Gabriel</span>
+                    <span className="text-sm font-semibold">{data?.username}</span>
                      <h1 className="flex items-center" onClick={toggle}>
                         {state ? <ion-icon name="person-add-outline"></ion-icon> : <ion-icon name="remove-circle-outline"></ion-icon>}
                      </h1>
