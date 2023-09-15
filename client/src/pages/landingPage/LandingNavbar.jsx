@@ -15,6 +15,7 @@ const LandingNavbar = () => {
             <Link to='/'>
                 <h1 className='font-semibold text-xl'> <span className=': text-orange-700'>Travel </span>| <span className='text-blue-700'>Memories</span></h1>
             </Link>
+            
             <div  className="md:hidden flex items-center" onClick={toggle}>
                   {state ? 
                   <span className='text-2xl'><ion-icon name="close"></ion-icon></span> :

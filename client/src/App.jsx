@@ -6,6 +6,7 @@ import ProfilePage from './pages/profilePage/ProfilePage'
 import SignIn from './pages/registerPage/SignIn'
 import SignUp from './pages/registerPage/SignUp'
 import Private from './layout/Private'
+import Logout from './components/Logout'
 const App = () => {
   return (
   <div className='app'>
@@ -13,6 +14,7 @@ const App = () => {
       <Route path="/" element={<LandingPage/>}/>
       <Route path="/signin" element={<SignIn/>}/>
       <Route path="/signup" element={<SignUp/>}/>
+      <Route path='/logout' element={<Logout/>}/>
       <Route element={<Private/>} >
         <Route path="/home" element={<HomePage/>}/>
         <Route path="/profile" element={<ProfilePage/>}/>

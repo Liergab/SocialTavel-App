@@ -2,14 +2,25 @@
 import FormStracture from "../../components/FormStracture";
 import LandingNavbar from "../landingPage/LandingNavbar";
 import { Button, Input,Typography } from "@material-tailwind/react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {useForm} from 'react-hook-form';yup
 import * as yup from 'yup'
 import {yupResolver} from '@hookform/resolvers/yup'
 import { useEffect } from "react";
+import { useMutation,useQueryClient } from "@tanstack/react-query";
+import { LoginInUser } from "../../hooks/Api";
 
 
 const SignIn = () => {
+  const navigate = useNavigate()
+  const queryClient = useQueryClient()
+  const loginUser = useMutation({
+    mutationFn:LoginInUser,
+    onSuccess: () => {
+      navigate('/home')
+      queryClient.invalidateQueries({ queryKey: ['userData'] })
+    }
+  })
 
   const Schema = yup.object().shape({
     email:yup.string().email().required('Email is Required!'),
@@ -20,8 +31,16 @@ const SignIn = () => {
     resolver:yupResolver(Schema)
   })
 
-  const onSubmit = (data) => {
-    console.log(data)
+  const onSubmit = async(data) => {
+    try {
+      await loginUser.mutateAsync(data);
+   
+    } catch (error) {
+      alert(error.response.data.message);
+     
+    }
+   
+
   }
    useEffect(() => {
     if(formState.isSubmitSuccessful){
@@ -36,10 +55,10 @@ const SignIn = () => {
         <FormStracture>
          <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col space-y-4 py-14">
            <span className="text-xl font-semibold mt-[-20px]">Sign in</span>
-           <Input label="Email" type="text" name="email" {...register('email') }  maxLength={4}
+           <Input label="Email" type="text" name="email" {...register('email') } 
                       containerProps={{ className: "min-w-[72px]" }}/>
            {errors.email && <span className=": text-red-700 text-sm">{errors.email.message}</span>}
-           <Input label="Password" type="password" {...register('password')}  maxLength={4}
+           <Input label="Password" type="password" {...register('password')}  
                       containerProps={{ className: "min-w-[72px]" }}/>
            {errors.password && <span className=": text-red-700 text-sm">{errors.password.message}</span>}
            <Button type="submit" >Sign in</Button>

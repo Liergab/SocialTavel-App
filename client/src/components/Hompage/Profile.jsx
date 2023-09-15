@@ -7,10 +7,13 @@ import {
     Avatar,
     Typography,
   } from "@material-tailwind/react";
+  import {Link} from 'react-router-dom'
+import { GetUser } from "../../hooks/Api";
 
-  import cvprofile from '../../assets/images/cvprofile.jpg'
+  
 
 const Profile = () => {
+  const{data} = GetUser()
   return (
     <Menu dismiss={{
         enabled: true
@@ -18,9 +21,9 @@ const Profile = () => {
     <MenuHandler>
       <Avatar
         variant="circular"
-        alt="tania andrew"
+        // alt="Default"
         className="cursor-pointer p-0.5"
-        src={cvprofile}
+        src={`http://localhost:5001/image/${data?.name}`}
         withBorder={true}
         color="blue"
         
@@ -86,9 +89,11 @@ const Profile = () => {
             d="M5.636 5.636a9 9 0 1012.728 0M12 3v9"
           />
         </svg>
+        <Link to='/logout'>
         <Typography variant="small" className="font-normal">
           Sign Out
         </Typography>
+        </Link>
       </MenuItem>
     </MenuList>
   </Menu>
