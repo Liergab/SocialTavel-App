@@ -9,15 +9,18 @@ import {yupResolver} from '@hookform/resolvers/yup'
 import { useEffect } from "react";
 import { useMutation,useQueryClient } from "@tanstack/react-query";
 import { LoginInUser } from "../../hooks/Api";
+import toast from "react-hot-toast";
 
 
-const SignIn = () => {
+const SignIn = () => { 
+
   const navigate = useNavigate()
   const queryClient = useQueryClient()
   const loginUser = useMutation({
     mutationFn:LoginInUser,
     onSuccess: () => {
       navigate('/home')
+      toast.success(`Successfully login`)
       queryClient.invalidateQueries({ queryKey: ['userData'] })
     }
   })
@@ -34,10 +37,10 @@ const SignIn = () => {
   const onSubmit = async(data) => {
     try {
       await loginUser.mutateAsync(data);
-   
+      
     } catch (error) {
-      alert(error.response.data.message);
-     
+      toast.error(error.response.data.message);
+      console.log(error)
     }
    
 
