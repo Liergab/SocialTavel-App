@@ -7,10 +7,13 @@ import SignIn from './pages/registerPage/SignIn'
 import SignUp from './pages/registerPage/SignUp'
 import Private from './layout/Private'
 import Logout from './components/Logout'
+import { Toaster } from 'react-hot-toast'
 const App = () => {
   return (
   <div className='app'>
+     <Toaster position='top-right' toastOptions={{duration:2000}} />
     <Routes>
+   
       <Route path="/" element={<LandingPage/>}/>
       <Route path="/signin" element={<SignIn/>}/>
       <Route path="/signup" element={<SignUp/>}/>

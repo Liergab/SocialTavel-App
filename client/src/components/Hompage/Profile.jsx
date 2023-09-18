@@ -10,6 +10,7 @@ import {
   import {Link} from 'react-router-dom'
 import { GetUser } from "../../hooks/Api";
 
+
   
 
 const Profile = () => {
@@ -46,7 +47,9 @@ const Profile = () => {
           />
         </svg>
         <Typography variant="small" className="font-normal">
-         My Profile
+          <Link to='/profile'>
+           My Profile
+          </Link>
         </Typography>
       </MenuItem>
       <MenuItem className="flex items-center gap-2">
