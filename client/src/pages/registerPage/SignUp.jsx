@@ -10,14 +10,14 @@ import * as yup from 'yup'
 import { yupResolver } from "@hookform/resolvers/yup"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { RegisterInUser } from "../../hooks/Api"
-
+import toast from 'react-hot-toast'
 const SignUp = () => {
     const queryClient = useQueryClient()
 
     const registerUser = useMutation({
       mutationFn: RegisterInUser,
       onSuccess: () => {
-        alert('success')
+        toast.success("Successfully Register!")
         queryClient.invalidateQueries({queryKey:['userData']})
       }
     })
