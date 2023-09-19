@@ -16,7 +16,9 @@ const userSchema = new Schema({
     path:{
         type:String
     },
-    name: {type: String},
+    name: {type: String,
+        default:'default.jpg'
+    },
 },{timestamps:true})
 
 export default model('users', userSchema)
